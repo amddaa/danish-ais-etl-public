@@ -11,7 +11,7 @@
 
 ## Polski
 
-To repozytorium zawiera kopię kodu wymaganego do uzyskania rezultatów pracy magisterskiej. Projekt umożliwia przetwarzanie danych AIS pochodzących ze strony [Duńskiej Administracji Morskiej (Danish Maritime Authority)](https://www.dma.dk/safety-at-sea/navigational-information/ais-data), ich analizę oraz wizualizację.
+To repozytorium zawiera kopię kodu wymaganego do uzyskania rezultatów pracy magisterskiej. Projekt umożliwia przetwarzanie danych AIS pochodzących ze strony [Duńskiego Urzędu Morskiego (Danish Maritime Authority)](https://www.dma.dk/safety-at-sea/navigational-information/ais-data), ich analizę oraz wizualizację.
 
 **Opublikowane wyniki (gotowe dashboardy):** https://amddaa.github.io/danish-ais-map/
 
@@ -46,7 +46,7 @@ uv run python -m source.main
 uv run python data/ports/import_terminals.py
 ```
 
-### 1. Utwórz bazę danych
+### 1. Utworzenie bazy danych
 
 ```bash
 docker compose up -d
@@ -54,7 +54,7 @@ docker compose up -d
 
 Uruchamia TimescaleDB (Postgres 14) na porcie 5432 oraz pgAdmin pod http://localhost:5050. Pliki SQL z `migrations/` są montowane w `/docker-entrypoint-initdb.d` i wykonują się tylko przy pierwszym utworzeniu wolumenu Postgresa. Nowe migracje na istniejącym wolumenie trzeba zastosować ręcznie przez `psql` albo odtworzyć wolumen.
 
-### 2. Pobierz dane AIS
+### 2. Pobranie danych AIS
 
 W razie potrzeby edytuj listę URL w `data/download_aisdk.py`, a następnie pobierz dzienne archiwa ZIP z aisdata.ais.dk. Skrypt zapisuje pliki do `./aisdata/` względem katalogu roboczego (przenieś lub rozpakuj CSV do ścieżki używanej przez ETL):
 
@@ -62,7 +62,7 @@ W razie potrzeby edytuj listę URL w `data/download_aisdk.py`, a następnie pobi
 uv run python data/download_aisdk.py
 ```
 
-### 3. Uruchom ETL AIS
+### 3. ETL
 
 Przed uruchomieniem ustaw `CSV_FILES` na początku `source/main.py` na lokalne ścieżki do plików CSV AIS.
 
@@ -72,7 +72,7 @@ uv run python -m source.main
 
 Daty w duńskich CSV są w formacie DD/MM/YYYY. Loader kopiuje dane do tabel TEMP (`COPY`), a następnie scala je do `vessels` oraz hypertable `ais_positions`. Przetworzone pliki są śledzone w `etl_processed_files`.
 
-### 4. Załaduj terminale i porty WPI
+### 4. Terminale + porty WPI
 
 Punkty z OSM w `data/ports/baltic_ports.geojson` to terminale do wizualizacji na mapie (`port_terminals`). Rekordy WPI Pub 150 wypełniają tabelę `ports`. Następnie uruchom:
 
@@ -90,9 +90,9 @@ uv run python -m source.analysis.ports.port_visit_extractor
 uv run python -m source.analysis.ports.aggregate_results
 ```
 
-JSONL wizyt/rejsów trafia do `source/analysis/ports/output/`. `aggregate_results` buduje JSON analizy tras na mapę.
+JSONL wizyt/rejsów trafia do `source/analysis/ports/output/`. `aggregate_results` agreguje finalny json do mapy.
 
-### 6. Wygeneruj JSON dashboardów
+### 6. Generowanie JSON dashboardów
 
 ```bash
 uv run python -m source.analysis.ports.port_feature_matrix
@@ -114,9 +114,9 @@ npm run preview
 
 Lokalny development: `npm run dev`.
 
-### Praca tylko na UI / istniejącej bazie
+### Praca tylko na UI 
 
-Jeśli wolumen bazy jest już wypełniony, nie uruchamiaj ponownie ETL ani importerów. Aby odświeżyć wyłącznie dashboardy:
+Jeśli wolumen bazy jest już wypełniony, nie uruchamiaj ponownie ETL. Odświeżenie dashboardów:
 
 ```bash
 uv run python -m source.analysis.routes.visualize_routes
