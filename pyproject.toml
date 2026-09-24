@@ -1,0 +1,62 @@
+[project]
+name = "danish-ais"
+version = "0.1.0"
+description = "Danish AIS ETL, port-call analysis, and static map dashboards"
+requires-python = ">=3.11"
+dependencies = [
+    "aiohttp",
+    "kneed",
+    "matplotlib",
+    "numpy",
+    "pandas",
+    "psutil",
+    "psycopg2-binary",
+    "pydantic>=2",
+    "python-dotenv",
+    "scikit-learn",
+    "scipy",
+    "seaborn>=0.13.2",
+    "shapely",
+    "ujson",
+    "umap-learn",
+]
+
+[project.optional-dependencies]
+research = [
+    "python-Levenshtein",
+    "seaborn",
+    "thefuzz",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["source"]
+
+[tool.pyright]
+venvPath = "."
+venv = ".venv"
+extraPaths = ["."]
+
+[tool.pyrefly]
+project-includes = ["source", "data"]
+search-path = ["."]
+
+replace-imports-with-any = [
+    "shapely",
+    "shapely.*",
+    "seaborn",
+    "seaborn.*",
+    "scipy",
+    "scipy.*",
+]
+
+[dependency-groups]
+dev = [
+    "pyrefly>=1.3.1",
+    "types-psutil>=7.2.2.20260906",
+    "types-psycopg2>=2.9.21.20260911",
+    "types-setuptools>=84.0.0.20260812",
+]

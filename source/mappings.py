@@ -1,0 +1,43 @@
+from source.models import VesselsColumns, AISPositionsColumns, AISColumnsCSV
+
+CSV_TO_VESSELS = {
+    VesselsColumns.MMSI: AISColumnsCSV.MMSI,
+    VesselsColumns.IMO: AISColumnsCSV.IMO,
+    VesselsColumns.CALLSIGN: AISColumnsCSV.CALLSIGN,
+    VesselsColumns.NAME: AISColumnsCSV.NAME,
+    VesselsColumns.SHIP_TYPE: AISColumnsCSV.SHIP_TYPE,
+    VesselsColumns.CARGO_TYPE: AISColumnsCSV.CARGO_TYPE,
+    VesselsColumns.WIDTH_M: AISColumnsCSV.WIDTH,
+    VesselsColumns.LENGTH_M: AISColumnsCSV.LENGTH,
+    VesselsColumns.POS_FIX: AISColumnsCSV.POS_FIX,
+    VesselsColumns.LAST_KNOWN_DRAUGHT_M: AISColumnsCSV.DRAUGHT,
+}
+
+CSV_TO_POSITIONS = {
+    AISPositionsColumns.TIMESTAMP: AISColumnsCSV.TIMESTAMP,
+    AISPositionsColumns.TYPE_OF_MOBILE: AISColumnsCSV.TYPE_OF_MOBILE,
+    AISPositionsColumns.MMSI: AISColumnsCSV.MMSI,
+    AISPositionsColumns.LATITUDE: AISColumnsCSV.LATITUDE,
+    AISPositionsColumns.LONGITUDE: AISColumnsCSV.LONGITUDE,
+    AISPositionsColumns.NAV_STATUS: AISColumnsCSV.NAV_STATUS,
+    AISPositionsColumns.ROT: AISColumnsCSV.ROT,
+    AISPositionsColumns.SOG: AISColumnsCSV.SOG,
+    AISPositionsColumns.COG: AISColumnsCSV.COG,
+    AISPositionsColumns.HEADING: AISColumnsCSV.HEADING,
+    AISPositionsColumns.IMO: AISColumnsCSV.IMO,
+    AISPositionsColumns.CALLSIGN: AISColumnsCSV.CALLSIGN,
+    AISPositionsColumns.NAME: AISColumnsCSV.NAME,
+    AISPositionsColumns.SHIP_TYPE: AISColumnsCSV.SHIP_TYPE,
+    AISPositionsColumns.CARGO_TYPE: AISColumnsCSV.CARGO_TYPE,
+    AISPositionsColumns.WIDTH_M: AISColumnsCSV.WIDTH,
+    AISPositionsColumns.LENGTH_M: AISColumnsCSV.LENGTH,
+    AISPositionsColumns.POS_FIX: AISColumnsCSV.POS_FIX,
+    AISPositionsColumns.DRAUGHT_M: AISColumnsCSV.DRAUGHT,
+    AISPositionsColumns.DESTINATION: AISColumnsCSV.DESTINATION,
+    AISPositionsColumns.ETA: AISColumnsCSV.ETA,
+    AISPositionsColumns.DATA_SOURCE_TYPE: AISColumnsCSV.DATA_SOURCE,
+    AISPositionsColumns.SIZE_A_M: AISColumnsCSV.SIZE_A,
+    AISPositionsColumns.SIZE_B_M: AISColumnsCSV.SIZE_B,
+    AISPositionsColumns.SIZE_C_M: AISColumnsCSV.SIZE_C,
+    AISPositionsColumns.SIZE_D_M: AISColumnsCSV.SIZE_D,
+}

@@ -1,0 +1,12 @@
+project-includes = ["source", "data"]
+search-path = ["."]
+
+# Packages without stubs / py.typed
+replace-imports-with-any = [
+    "shapely",
+    "shapely.*",
+    "seaborn",
+    "seaborn.*",
+    "scipy",
+    "scipy.*",
+]

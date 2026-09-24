@@ -1,0 +1,26 @@
+---
+const ZOOM = 5;
+const COLS = [16, 17, 18];
+const ROWS = [8, 9, 10];
+---
+
+<div class="map-backdrop" aria-hidden="true">
+  <div class="map-backdrop__grid">
+    {
+      ROWS.flatMap((y) =>
+        COLS.map((x) => (
+          <img
+            src={`https://tile.openstreetmap.org/${ZOOM}/${x}/${y}.png`}
+            width="256"
+            height="256"
+            alt=""
+            decoding="async"
+          />
+        )),
+      )
+    }
+  </div>
+</div>
+<p class="map-attr">
+  &copy;&nbsp;<a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>
+</p>

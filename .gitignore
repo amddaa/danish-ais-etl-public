@@ -1,0 +1,39 @@
+todo.txt
+code/ais_etl.log
+columns.xlsx
+data/aisdata/csv/
+AIS-DMA.xlsx
+exploration.sql
+.env
+source/analysis/ports/output/*
+!source/analysis/ports/output/plots/
+source/analysis/ports/output/plots/*.svg
+source/analysis/routes/route_analysis_partial.*
+data/ports_unlocode/UpdatedPub150.csv
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.coverage
+htmlcov/
+.venv/
+
+# Web (Astro build artifacts and dependencies)
+web/node_modules/
+web/dist/
+web/.astro/
+web/public/ports/
+web/.agents/
+
+# OS / editor
+.DS_Store
+.cursor/
+
+# Skills CLI lockfiles and extra copies (installs are local)
+skills-lock.json
+web/skills-lock.json
+.agents/skills/
+.claude/skills/
+agent/skills/
+data/skills/

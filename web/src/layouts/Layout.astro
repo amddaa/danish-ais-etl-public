@@ -1,0 +1,38 @@
+---
+import "../styles/reset.css";
+import "../styles/tokens.css";
+import "../styles/app-bar.css";
+import "../styles/components.css";
+import AppBar from "../components/AppBar.astro";
+
+interface Props {
+  title: string;
+  active: "home" | "routes" | "ports";
+  bodyClass?: string;
+  nav?: boolean;
+}
+
+const { title, active, bodyClass, nav = true } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class={bodyClass}>
+    <a class="skip-link" href="#main">Skip to content</a>
+    {nav && <AppBar active={active} />}
+    <div id="main">
+      <slot />
+    </div>
+  </body>
+</html>

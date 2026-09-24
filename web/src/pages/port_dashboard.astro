@@ -1,0 +1,9 @@
+---
+import Layout from "../layouts/Layout.astro";
+import "../styles/port-dashboard.css";
+import { PortDashboardApp } from "../portsdashboard/PortDashboardApp";
+---
+
+<Layout title="Port Profiles" active="ports" bodyClass="port-dashboard">
+  <PortDashboardApp client:load />
+</Layout>

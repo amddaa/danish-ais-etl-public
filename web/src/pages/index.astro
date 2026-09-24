@@ -1,0 +1,21 @@
+---
+import Layout from "../layouts/Layout.astro";
+import DashboardCard from "../components/DashboardCard.astro";
+import MapBackdrop from "../components/MapBackdrop.astro";
+import "../styles/home.css";
+---
+
+<Layout title="Home" active="home" bodyClass="home" nav={false}>
+  <div class="home-stage">
+    <MapBackdrop />
+    <div class="home-veil" aria-hidden="true"></div>
+    <div class="home-panel">
+      <p class="home-kicker">Baltic AIS</p>
+      <h1 class="home-title">Dashboards</h1>
+      <div class="home-ctas">
+        <DashboardCard href="routes_map.html" icon="route" title="Route Analysis" />
+        <DashboardCard href="port_dashboard.html" icon="ports" title="Port Profiles" />
+      </div>
+    </div>
+  </div>
+</Layout>

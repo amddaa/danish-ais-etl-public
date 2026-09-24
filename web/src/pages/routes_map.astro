@@ -1,0 +1,40 @@
+---
+import Layout from "../layouts/Layout.astro";
+import "../styles/routes-map.css";
+import { RoutesMapApp } from "../routesmap/RoutesMapApp";
+import statsJson from "../data/routes_map/stats.json";
+
+const stats = statsJson as { routes: number; ports: number; vessels: number; trips: number };
+---
+
+<Layout title="Route Analysis" active="routes" bodyClass="routes-map">
+  <div id="routes-fallback" class="main-container">
+    <aside id="sidebar">
+      <header class="sidebar-header">
+        <h1>Route Analysis</h1>
+      </header>
+      <div class="stats-row" style="grid-template-columns: repeat(4, minmax(0, 1fr))">
+        <div class="stat-card">
+          <div class="stat-value">{stats.routes.toLocaleString("en-GB")}</div>
+          <div class="stat-label">Routes</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">{stats.ports.toLocaleString("en-GB")}</div>
+          <div class="stat-label">Ports</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">{stats.vessels.toLocaleString("en-GB")}</div>
+          <div class="stat-label">Vessels</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">{stats.trips.toLocaleString("en-GB")}</div>
+          <div class="stat-label">Trips</div>
+        </div>
+      </div>
+    </aside>
+    <div class="map-stage">
+      <div class="map-overlay" role="status"><p>Loading map…</p></div>
+    </div>
+  </div>
+  <RoutesMapApp client:only="react" />
+</Layout>

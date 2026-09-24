@@ -1,0 +1,63 @@
+---
+interface Props {
+  active: "home" | "routes" | "ports";
+}
+
+const { active } = Astro.props;
+
+const links = [
+  { href: "index.html", label: "Home", key: "home" },
+  { href: "routes_map.html", label: "Route Analysis", key: "routes" },
+  { href: "port_dashboard.html", label: "Port Profiles", key: "ports" },
+] as const;
+---
+
+<header class="app-bar">
+  <nav class="app-nav" aria-label="Site">
+    {
+      links.map((link) => (
+        <a
+          href={link.href}
+          class:list={[{ active: active === link.key }]}
+          aria-current={active === link.key ? "page" : undefined}
+        >
+          {link.label}
+        </a>
+      ))
+    }
+  </nav>
+  <button
+    type="button"
+    class="app-bar__controls"
+    id="sidebarToggle"
+    aria-expanded="false"
+    aria-controls="sidebar"
+  >
+    Controls
+  </button>
+</header>
+
+<script is:inline>
+  (function () {
+    var btn = document.getElementById("sidebarToggle");
+    if (!btn) return;
+    function setOpen(open) {
+      document.body.classList.toggle("sidebar-open", open);
+      btn.setAttribute("aria-expanded", open ? "true" : "false");
+    }
+    btn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      setOpen(!document.body.classList.contains("sidebar-open"));
+    });
+    document.addEventListener("click", function (e) {
+      if (!document.body.classList.contains("sidebar-open")) return;
+      var t = e.target;
+      if (!(t instanceof Element)) return;
+      if (t.closest("#sidebar") || t.closest("#sidebarToggle")) return;
+      setOpen(false);
+    });
+    window.addEventListener("resize", function () {
+      if (window.innerWidth > 1100) setOpen(false);
+    });
+  })();
+</script>
